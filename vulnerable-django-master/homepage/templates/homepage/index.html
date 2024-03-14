@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        {% for article in articles %}
+        <div class="post-preview">
+          <a href="{% url 'articles:detail' slug=article.slug %}">
+            <h2 class="post-title">
+              {{ article.title }}
+            </h2>
+            <img width="304" height="236" class="img-thumbnail" src="{% if article.thumb.url %}{{ article.thumb.url }}{% endif %}" alt="">
+            <p>{{ article.snippet }}</p>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">{{ article.author }}</a>
+            on {{ article.date }}</p>
+        </div>
+        <hr>
+        {% endfor %}
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+{% endblock %}
